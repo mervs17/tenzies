@@ -55,7 +55,7 @@ module.exports = merge(common, {
         minify: CssMinimizerPlugin.cleanCssMinify,
       }),
       new TerserPlugin(),
-      new ImageMinimizerPlugin({
+      /* new ImageMinimizerPlugin({
         minimizer: {
           filename: "optimized-[name][ext]",
           implementation: ImageMinimizerPlugin.imageminMinify,
@@ -67,7 +67,7 @@ module.exports = merge(common, {
             ],
           },
         },
-      }),
+      }), */
     ],
   },
 });
