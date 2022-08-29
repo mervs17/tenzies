@@ -1,4 +1,4 @@
-# react-template
+# Tenzies Game
 
 
 ## Under the hood
