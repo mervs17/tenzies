@@ -8,7 +8,8 @@
     "dev": "webpack-dev-server --config config/dev.js",
     "build": "webpack --config config/prod.js",
     "clean": "rm -rf dist",
-    "clean-js": "rm -rf dist/assets/js"
+    "clean-js": "rm -rf dist/assets/js",
+    "deploy": "gh-pages -d dist"
   },
   "author": "Mervin Reyes",
   "license": "MIT",
@@ -22,6 +23,7 @@
     "babel-loader": "^8.2.3",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^3.4.1",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "image-minimizer-webpack-plugin": "^3.2.3",
     "imagemin": "^8.0.1",
