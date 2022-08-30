@@ -2,6 +2,17 @@
 
 .Tenzies {
   @apply text-center flex flex-wrap flex-col items-center justify-center sm:absolute sm:top-1/2 sm:-translate-y-1/2 inset-x-0 bg-secondary max-w-full w-[650px] sm:h-[600px] py-5 px-10 rounded-[10px] mx-auto;
+
+  &__Roll {
+    @apply font-bold bg-t-purple text-white sm:px-12 sm:py-3 px-8 py-2 text-3xl rounded-[10px] border border-solid border-t-purple transition;
+
+    // ACTIVE
+    @apply active:shadow-inner active:shadow-[rgba(0,0,0,0.7)];
+  }
+
+  &__Number {
+    @apply mt-3;
+  }
 }
 
 .Title {
@@ -120,13 +131,6 @@
   &__Value {
     @apply text-[0];
   }
-}
-
-.Roll {
-  @apply font-bold bg-t-purple text-white sm:px-12 sm:py-3 px-8 py-2 text-3xl rounded-[10px] border border-solid border-t-purple transition;
-
-  // ACTIVE
-  @apply active:shadow-inner active:shadow-[rgba(0,0,0,0.7)];
 }
 
 .Confetti {

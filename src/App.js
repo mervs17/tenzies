@@ -8,6 +8,7 @@ import { useWindowSize } from "react-use";
 export default function App() {
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
+  const [rolls, setRolls] = useState(0);
 
   useEffect(() => {
     const allHeld = dice.every((die) => die.isHeld);
@@ -38,9 +39,11 @@ export default function App() {
       setDice((prevDice) =>
         prevDice.map((die) => (die.isHeld ? die : generateNewDie()))
       );
+      setRolls((prevRolls) => prevRolls + 1);
     } else {
       setTenzies(false);
       setDice(allNewDice());
+      setRolls(0);
     }
   }
 
@@ -79,9 +82,10 @@ export default function App() {
             />
           ))}
         </div>
-        <button onClick={rollDice} className={style.Roll}>
+        <button onClick={rollDice} className={style.Tenzies__Roll}>
           {tenzies ? "New Game" : "Roll"}
         </button>
+        <p className={style.Tenzies__Number}>Number of rolls: {rolls}</p>
       </div>
     </main>
   );
