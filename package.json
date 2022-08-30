@@ -13,6 +13,7 @@
   },
   "author": "Mervin Reyes",
   "license": "MIT",
+  "homepage": "https://mervs17.github.io/tenzies/",
   "devDependencies": {
     "@babel/cli": "^7.17.6",
     "@babel/core": "^7.17.8",
