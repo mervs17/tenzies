@@ -56,6 +56,13 @@ module.exports = {
         test: /\.svg$/i,
         type: "asset/inline",
       },
+      {
+        test: /\.(mp3|wav)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "audio/[hash][ext]",
+        },
+      },
     ],
   },
   resolve: {
