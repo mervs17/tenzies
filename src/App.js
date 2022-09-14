@@ -71,7 +71,6 @@ export default function App() {
       );
       setRolls((prevRolls) => prevRolls + 1);
       audio.play();
-      console.log(audio);
     } else {
       setTenzies(false);
       setDice(allNewDice());
