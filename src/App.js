@@ -3,20 +3,41 @@ import Die from "./components/Die";
 import style from "./scss/Dice.scss";
 import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
-import { useWindowSize } from "react-use";
+import { useLocalStorage } from "./useLocalStorage";
+import { If, Then, Else } from "react-if";
 
 export default function App() {
-  const [dice, setDice] = useState(allNewDice());
+  const [dice, setDice] = useState(
+    () => JSON.parse(localStorage.getItem("dice")) || allNewDice()
+  );
   const [tenzies, setTenzies] = useState(false);
-  const [rolls, setRolls] = useState(0);
+  const [rolls, setRolls] = useLocalStorage("rolls", 0);
+  const [time, setTime] = useState(
+    () => JSON.parse(localStorage.getItem("time")) || 0
+  );
 
   useEffect(() => {
+    localStorage.setItem("dice", JSON.stringify(dice));
     const allHeld = dice.every((die) => die.isHeld);
     const allEqual = dice.every((die) => die.value === dice[0].value);
+
     if (allEqual && allHeld) {
       setTenzies(true);
     }
   }, [dice]);
+
+  useEffect(() => {
+    localStorage.setItem("time", JSON.stringify(time));
+    let interval;
+    if (!tenzies) {
+      interval = setInterval(() => setTime((prevTime) => prevTime + 10), 10);
+    }
+    return () => clearInterval(interval);
+  }, [time]);
+
+  useEffect(() => {
+    localStorage.setItem("rolls", JSON.parse(rolls));
+  }, [rolls]);
 
   function generateNewDie() {
     return {
@@ -40,10 +61,12 @@ export default function App() {
         prevDice.map((die) => (die.isHeld ? die : generateNewDie()))
       );
       setRolls((prevRolls) => prevRolls + 1);
+      setSaveRolls((prevRolls) => prevRolls + 1);
     } else {
       setTenzies(false);
       setDice(allNewDice());
       setRolls(0);
+      setTime(0);
     }
   }
 
@@ -55,17 +78,21 @@ export default function App() {
     );
   }
 
-  const { width, height } = useWindowSize();
+  const minute = ("0" + Math.floor((time / 60000) % 60)).slice(-2);
+  const second = ("0" + Math.floor((time / 1000) % 60)).slice(-2);
+  const millisecond = ("0" + ((time / 10) % 100)).slice(-2);
 
   return (
     <main>
-      {tenzies ? (
-        <div className={style.Confetti}>
-          <Confetti width={width} height={height} />
-        </div>
-      ) : (
-        ""
-      )}
+      <If condition={tenzies}>
+        <Then>
+          <div>
+            <div className={style.Confetti}>
+              <Confetti />
+            </div>
+          </div>
+        </Then>
+      </If>
       <div className={style.Tenzies}>
         <h1 className={style.Title}>Tenzies</h1>
         <p className={style.Paragraph}>
@@ -85,7 +112,13 @@ export default function App() {
         <button onClick={rollDice} className={style.Tenzies__Roll}>
           {tenzies ? "New Game" : "Roll"}
         </button>
-        <p className={style.Tenzies__Number}>Number of rolls: {rolls}</p>
+
+        <div className={style.Tenzies__Top}>
+          <p className={style.Tenzies__Number}>Number of rolls: {rolls}</p>
+          <div className={style.Tenzies__Time}>
+            {minute}:{second}:{millisecond}
+          </div>
+        </div>
       </div>
     </main>
   );
