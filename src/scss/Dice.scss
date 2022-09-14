@@ -1,7 +1,7 @@
 // Dice
 
 .Tenzies {
-  @apply text-center flex flex-wrap flex-col items-center justify-center sm:absolute sm:top-1/2 sm:-translate-y-1/2 inset-x-0 bg-secondary max-w-full w-[650px] sm:h-[600px] py-5 px-10 rounded-[10px] mx-auto;
+  @apply text-center flex flex-wrap flex-col items-center justify-center sm:absolute sm:top-1/2 sm:-translate-y-1/2 inset-x-0 bg-secondary max-w-full w-[650px] p-10 rounded-[10px] mx-auto;
 
   &__Roll {
     @apply font-bold bg-t-purple text-white sm:px-12 sm:py-3 px-8 py-2 text-3xl rounded-[10px] border border-solid border-t-purple transition;
@@ -12,6 +12,13 @@
 
   &__Number {
     @apply mt-3;
+  }
+
+  &__Top {
+  }
+
+  &__Time {
+    @apply sm:text-lg text-base;
   }
 }
 
