@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import Confetti from "react-confetti";
 import { useLocalStorage } from "./useLocalStorage";
 import { If, Then, Else } from "react-if";
-import soundDice from "./audio/dice.wav";
+import soundDice from "./audio/dice.mp3";
 
 export default function App() {
   const [dice, setDice] = useState(
