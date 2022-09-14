@@ -145,3 +145,11 @@
     @apply w-full;
   }
 }
+
+.BestTime {
+  @apply text-white text-center mb-5;
+
+  h2 {
+    @apply text-white;
+  }
+}
